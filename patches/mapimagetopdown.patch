@@ -1,0 +1,16 @@
+diff --git a/dlls/ntdll/unix/virtual.c b/dlls/ntdll/unix/virtual.c
+index b17d8d6b61..5d57eadea0 100644
+--- a/dlls/ntdll/unix/virtual.c
++++ b/dlls/ntdll/unix/virtual.c
+@@ -2258,9 +2258,9 @@ NTSTATUS CDECL virtual_map_section( HANDLE handle, PVOID *addr_ptr, unsigned sho
+         vprot = SEC_IMAGE | SEC_FILE | VPROT_COMMITTED | VPROT_READ | VPROT_EXEC | VPROT_WRITECOPY;
+ 
+         if ((char *)base >= (char *)address_space_start)  /* make sure the DOS area remains free */
+-            res = map_view( &view, base, size, alloc_type & MEM_TOP_DOWN, vprot, zero_bits_64 );
++            res = map_view( &view, base, size, TRUE, vprot, zero_bits_64 );
+ 
+-        if (res) res = map_view( &view, NULL, size, alloc_type & MEM_TOP_DOWN, vprot, zero_bits_64 );
++        if (res) res = map_view( &view, NULL, size, TRUE, vprot, zero_bits_64 );
+         if (res) goto done;
+ 
+         res = map_image_into_view( view, unix_handle, base, image_info->header_size,

@@ -255,6 +255,9 @@
     
     echo "Paul's Diablo 1 menu fix"
     patch -Np1 < ../patches/game-patches/diablo_1_menu.patch
+
+    echo "mapimagetopdown fix"
+    patch -Np1 < ../patches/mapimagetopdown.patch
     
     ./dlls/winevulkan/make_vulkan
     ./tools/make_requests
